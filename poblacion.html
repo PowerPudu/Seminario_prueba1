@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Población</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
+<div class="container">
+	<a class="navbar-brand" href="index.html">Japón</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            
+			<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="clima_1.html" id="primer_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clima</a>
+            <div class="dropdown-menu" aria-labelledby="primer_dropdown">
+              <a class="dropdown-item active" href="clima_1.html">Tokio</a>
+              <a class="dropdown-item" href="clima_2.html">Otras regiones</a>
+            </div>
+          </li>
+           <li class="nav-item"><a class="nav-link" href="poblacion.html">Población</a></li>
+<li class="nav-item"><a class="nav-link" href="variacion.html">Crecimiento</a></li>
+			
+		</ul>
+	</div>
+</div>
+</nav>	
+<div class="container py-5">
+<div class="row justify-content-center">
+		<div class="col-sm-6">
+			<h1>Las 20 ciudades más pobladas en Japón.</h1>
+			<p class="text-muted">Las principales ciudades de Japón alojan una enorme cantidad de   personas. Estas son las 20 ciudades más pobladas de Japón, considerando el censo de 2015.</p>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+	<div class="row justify-content-center">
+		<div class="col-sm-6">
+			<div id="there" style="overflow-x:hidden"></div>
+		</div>
+	</div>
+    </div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+<script>
+var data;
+function preload() {
+	data = loadTable('https://raw.githubusercontent.com/PowerPudu/Seminario_prueba1/gh-pages/poblacion.csv','csv', 'header');
+}
+function setup() {
+	console.log(data);
+	console.log('Son ' + data.getRowCount() + ' filas en la tabla');
+	console.log('Son ' + data.getColumnCount() + ' columnas en la tabla');
+	//En este caso estoy dejando la altura dependiente de los ítem de lista
+	var canvas = createCanvas(windowWidth-30, 22*data.getRowCount());
+	//Además, estoy poniendo el canvas dentro de un elemento de identidad there
+	canvas.parent('there');
+	//fondo
+	canvas.style('background','#E7C4EB');
+	//muevo todo 10 pixeles hacia abajo
+   	translate(0,10);
+   	//ahora un loop para revisar todas las filas de la data
+   	for (var a = 0; a < data.getRowCount(); a++) {
+		//colores para tener a la vista a chilenos y sumatrinos
+		if (data.get(a, 1).indexOf) { 
+			
+		}
+   		else if (data.get(a, 1).indexOf) { 
+			
+		}
+   		else{
+   			fill(100)
+		}
+		//una condición para el nombre a desplegar
+		var nombre = data.get(a, 1);
+		if(nombre=='' || nombre.length >= 30){
+			var info = data.get(a,0)+'.- '+ data.get(a, 1);
+		} else {
+			var info = +data.get(a,0)+'.- '+ nombre;
+		}
+		//text
+		textSize(15);
+		//poblacion
+		var year = splitTokens(data.get(a, 3), "-")[0];
+   		text(info + ' ' + year + ' de personas.',10,20*(a+1));
+	}
+	noStroke();
+}
+
+function draw() {}
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
